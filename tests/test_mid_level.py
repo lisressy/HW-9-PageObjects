@@ -1,6 +1,6 @@
 from selene import browser
 
-from Pages.PageRegistration import RegistrationPage
+from pages.PageRegistration import RegistrationPage
 import os
 import pytest
 
@@ -16,12 +16,13 @@ def test_registration():
         .fill_subject("Math") \
         .choose_gender("Male") \
         .choose_hobbies("Reading") \
-        .avatar(os.path.abspath(os.path.join(os.path.dirname(__file__), 'avatar.png'))) \
+        .avatar(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'resources', 'avatar.png'))) \
         .choose_birthday(day=15, month='May', year='1990') \
         .choose_state("NCR") \
         .choose_city("Delhi") \
         .submit_click() \
-        .should_have_registered(
+
+    page.should_have_registered(
         full_name='John Doe',
         email='lisressy@test.com',
         phone='1122334455',
